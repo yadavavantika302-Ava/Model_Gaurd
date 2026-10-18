@@ -1,0 +1,17 @@
+{
+    "model_type": "RandomForestClassifier",
+    "task_type": "classification",
+    "target": "label",
+    "features": [
+        "f1",
+        "f2"
+    ],
+    "training_rows": 24,
+    "validation_rows": 6,
+    "metrics": {
+        "Accuracy": 0.3333,
+        "Precision": 0.3333,
+        "Recall": 0.3333,
+        "F1": 0.3333
+    }
+}

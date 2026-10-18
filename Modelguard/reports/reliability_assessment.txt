@@ -1,0 +1,141 @@
+MODEL GUARD - RELIABILITY ASSESSMENT
+==========================================
+Model: RandomForestRegressor
+Target: cnt
+Features: 12
+
+ASSESSMENT STATUS:
+Evidence collected. Review the sections below.
+
+1. DATA QUALITY
+--------------------
+MODEL GUARD - DATA QUALITY REPORT
+======================================
+Rows checked: 3476
+Columns received: 14
+Status: CHECKS PASSED
+
+ISSUES:
+- None found
+
+WARNINGS:
+- None found
+
+2. DATA DRIFT
+--------------------
+MODEL GUARD - DATA DRIFT REPORT
+====================================
+Reference rows: 13903
+Current rows: 3476
+Method: Standardized difference in feature means
+Screening threshold: 0.10
+
+FEATURE RESULTS:
+
+Feature: hr
+  reference_mean: 11.5466
+  current_mean: 11.5475
+  standardized_mean_difference: 0.0001
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: season
+  reference_mean: 2.2638
+  current_mean: 3.4528
+  standardized_mean_difference: 1.1474
+  status: REVIEW POSSIBLE DRIFT
+
+Feature: yr
+  reference_mean: 0.3782
+  current_mean: 1.0
+  standardized_mean_difference: 1.2822
+  status: REVIEW POSSIBLE DRIFT
+
+Feature: mnth
+  reference_mean: 5.6501
+  current_mean: 10.088
+  standardized_mean_difference: 1.3789
+  status: REVIEW POSSIBLE DRIFT
+
+Feature: holiday
+  reference_mean: 0.0274
+  current_mean: 0.0342
+  standardized_mean_difference: 0.0418
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: weekday
+  reference_mean: 2.9994
+  current_mean: 3.0207
+  standardized_mean_difference: 0.0106
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: workingday
+  reference_mean: 0.6845
+  current_mean: 0.6758
+  standardized_mean_difference: 0.0187
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: weathersit
+  reference_mean: 1.42
+  current_mean: 1.4465
+  standardized_mean_difference: 0.0412
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: temp
+  reference_mean: 0.4992
+  current_mean: 0.4883
+  standardized_mean_difference: 0.0552
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: atemp
+  reference_mean: 0.478
+  current_mean: 0.4668
+  standardized_mean_difference: 0.0635
+  status: NO LARGE MEAN SHIFT DETECTED
+
+Feature: hum
+  reference_mean: 0.623
+  current_mean: 0.6442
+  standardized_mean_difference: 0.1068
+  status: REVIEW POSSIBLE DRIFT
+
+Feature: windspeed
+  reference_mean: 0.1941
+  current_mean: 0.1741
+  standardized_mean_difference: 0.1625
+  status: REVIEW POSSIBLE DRIFT
+
+INTERPRETATION:
+A flagged feature needs investigation.
+A flag does not prove the model is inaccurate.
+No flag does not prove the model is reliable.
+This report checks mean shifts, not every type of drift.
+
+3. UNSEEN TEST PERFORMANCE
+----------------------------
+
+MODEL GUARD - UNSEEN TEST EVALUATION
+====================================
+Model: RandomForestRegressor
+Test rows: 3476
+
+MAE: 51.749
+RMSE: 76.956
+R2: 0.8782
+
+These metrics describe performance on this test period.
+They do not guarantee performance on future data.
+
+
+METRIC INTERPRETATION
+--------------------
+MAE: 51.749 rentals per hour (average absolute error).
+RMSE: 76.956 rentals per hour (penalizes larger errors).
+R2: 0.8782 (explained variation on this test period).
+
+IMPORTANT LIMITATIONS
+----------------------
+- This report does not guarantee model reliability.
+- Data drift alone does not prove poor predictions.
+- Review metrics, data quality, and context together.
+- Evaluate with ground-truth labels whenever possible.
+- Missing evidence must not be treated as a passing check.

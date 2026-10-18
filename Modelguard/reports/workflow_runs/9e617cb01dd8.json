@@ -1,0 +1,733 @@
+{
+    "run_id": "9e617cb01dd8",
+    "created_at": "2026-10-16 00:29:30",
+    "mode_label": "ModelGuard Training Artifact",
+    "model_name": "ModelGuard trained pipeline",
+    "model_profile": {
+        "class_name": "Pipeline",
+        "task_type": "regression",
+        "task_label": "Regression",
+        "methods": [
+            "predict"
+        ],
+        "interface_label": "predict",
+        "supports_predict": true,
+        "supports_proba": false,
+        "supports_uncertainty": false
+    },
+    "features": [
+        "instant",
+        "dteday",
+        "season",
+        "yr",
+        "mnth",
+        "hr",
+        "holiday",
+        "weekday",
+        "workingday",
+        "weathersit",
+        "temp",
+        "atemp",
+        "hum",
+        "windspeed",
+        "casual",
+        "registered"
+    ],
+    "target": "cnt",
+    "rows": 500,
+    "selected_row": 1,
+    "selected_prediction": 424.9997364894052,
+    "selected_probabilities": {},
+    "selected_inputs": {
+        "instant": 12831,
+        "dteday": "2012-06-23",
+        "season": 3,
+        "yr": 1,
+        "mnth": 6,
+        "hr": 19,
+        "holiday": 0,
+        "weekday": 6,
+        "workingday": 0,
+        "weathersit": 1,
+        "temp": 0.8,
+        "atemp": 0.697,
+        "hum": 0.27,
+        "windspeed": 0.194,
+        "casual": 185,
+        "registered": 240
+    },
+    "data_profile": {
+        "row_count": 500,
+        "column_count": 17,
+        "numeric_count": 16,
+        "missing_cells": 0,
+        "columns": [
+            "instant",
+            "dteday",
+            "season",
+            "yr",
+            "mnth",
+            "hr",
+            "holiday",
+            "weekday",
+            "workingday",
+            "weathersit",
+            "temp",
+            "atemp",
+            "hum",
+            "windspeed",
+            "casual",
+            "registered",
+            "cnt"
+        ]
+    },
+    "dataset_type": "model inspection",
+    "explainability": {
+        "method": "Model-agnostic one-feature-at-a-time sensitivity",
+        "local_method": "Unavailable",
+        "global": [],
+        "local": [],
+        "sample_prediction": 424.9997364894052,
+        "score_label": "predicted value",
+        "output_component": null,
+        "sample_row": 1,
+        "sample_values": {
+            "instant": 12831,
+            "dteday": "2012-06-23",
+            "season": 3,
+            "yr": 1,
+            "mnth": 6,
+            "hr": 19,
+            "holiday": 0,
+            "weekday": 6,
+            "workingday": 0,
+            "weathersit": 1,
+            "temp": 0.8,
+            "atemp": 0.697,
+            "hum": 0.27,
+            "windspeed": 0.194,
+            "casual": 185,
+            "registered": 240
+        },
+        "simple_explanation": "The model returned an output, but no supported feature-level explanation was available.",
+        "baseline_note": "Local sensitivity compares the selected row with typical reference values; these changes describe model behavior, not causation."
+    },
+    "model_information": {
+        "family": "LinearRegression",
+        "framework": "sklearn",
+        "framework_version": "1.9.0",
+        "model_type": "Regression",
+        "task_source": "Inferred from exposed model interface",
+        "interface": "predict",
+        "feature_count": 16,
+        "feature_names": [
+            "instant",
+            "dteday",
+            "season",
+            "yr",
+            "mnth",
+            "hr",
+            "holiday",
+            "weekday",
+            "workingday",
+            "weathersit",
+            "temp",
+            "atemp",
+            "hum",
+            "windspeed",
+            "casual",
+            "registered"
+        ],
+        "output_classes": "Not exposed by this model",
+        "output_dimensions": "Not exposed by this model",
+        "input_dimensions": "Not exposed by this model",
+        "hyperparameters": {
+            "copy_X": true,
+            "fit_intercept": true,
+            "n_jobs": null,
+            "positive": false,
+            "tol": 1e-06
+        },
+        "preprocessing": [
+            {
+                "step": "preprocess",
+                "component": "ColumnTransformer"
+            }
+        ],
+        "estimator_count": "Not applicable / unavailable",
+        "layer_count": "Not exposed by this model",
+        "parameter_count": "Not exposed by this model",
+        "architecture": "Pipeline(steps=[('preprocess',\n                 ColumnTransformer(transformers=[('numeric',\n                                                  Pipeline(steps=[('impute',\n                                                                   SimpleImputer(strategy='median')),\n                                                                  ('scale',\n                                                                   StandardScaler())]),\n                                                  ['instant', 'season', 'yr',\n                                                   'mnth', 'hr', 'holiday',\n                                                   'weekday', 'workingday',\n                                                   'weathersit', 'temp',\n                                                   'atemp', 'hum', 'windspeed',\n                                                   'casual', 'registered']),\n                                                 ('categorical',\n                                                  Pipeline(steps=[('impute',\n                                                                   SimpleImputer(strategy='most_frequent')),\n                                                                  ('encode',\n                                                                   OneHotEncoder(handle_unknown='ignore',\n                                                                                 max_categories=100))]),\n                                                  ['dteday'])])),\n                ('model', LinearRegression())])",
+        "metadata_limitations": [
+            "Training history, data lineage, and hidden framework-specific metadata cannot be recovered unless they were saved with the model."
+        ]
+    },
+    "diagnostics": {
+        "prediction_latency_ms_per_row": 0.038,
+        "prediction_latency_ms_total": 18.879,
+        "unexpected_columns": []
+    },
+    "quality": {
+        "missing_columns": "None",
+        "invalid_values": 0,
+        "duplicates": 0,
+        "non_numeric": "None",
+        "issues": [],
+        "warnings": [],
+        "issue_count": 0
+    },
+    "performance": {
+        "task_type": "regression",
+        "metrics": {
+            "MAE": 0.001,
+            "RMSE": 0.001,
+            "R2": 1.0
+        },
+        "primary_metric": 1.0,
+        "primary_metric_name": "R2"
+    },
+    "prediction_summary": "mean 183.916, min 0.998, max 868.000",
+    "prediction_rows": [
+        {
+            "row_index": 0,
+            "prediction": 424.9997364894052,
+            "actual": 425
+        },
+        {
+            "row_index": 1,
+            "prediction": 87.99869365963734,
+            "actual": 88
+        },
+        {
+            "row_index": 2,
+            "prediction": 4.000043639041991,
+            "actual": 4
+        },
+        {
+            "row_index": 3,
+            "prediction": 525.9980685291412,
+            "actual": 526
+        },
+        {
+            "row_index": 4,
+            "prediction": 13.000081191671342,
+            "actual": 13
+        },
+        {
+            "row_index": 5,
+            "prediction": 32.00014716562649,
+            "actual": 32
+        },
+        {
+            "row_index": 6,
+            "prediction": 706.0002303130176,
+            "actual": 706
+        },
+        {
+            "row_index": 7,
+            "prediction": 26.001890043719158,
+            "actual": 26
+        },
+        {
+            "row_index": 8,
+            "prediction": 2.000200847235277,
+            "actual": 2
+        },
+        {
+            "row_index": 9,
+            "prediction": 21.00017763489231,
+            "actual": 21
+        },
+        {
+            "row_index": 10,
+            "prediction": 33.99992300387635,
+            "actual": 34
+        },
+        {
+            "row_index": 11,
+            "prediction": 88.99991520450482,
+            "actual": 89
+        },
+        {
+            "row_index": 12,
+            "prediction": 541.9996390673444,
+            "actual": 542
+        },
+        {
+            "row_index": 13,
+            "prediction": 8.998995776149087,
+            "actual": 9
+        },
+        {
+            "row_index": 14,
+            "prediction": 324.9998473331999,
+            "actual": 325
+        },
+        {
+            "row_index": 15,
+            "prediction": 335.99997232373664,
+            "actual": 336
+        },
+        {
+            "row_index": 16,
+            "prediction": 188.00011386178207,
+            "actual": 188
+        },
+        {
+            "row_index": 17,
+            "prediction": 479.0002294393039,
+            "actual": 479
+        },
+        {
+            "row_index": 18,
+            "prediction": 16.000469399486292,
+            "actual": 16
+        },
+        {
+            "row_index": 19,
+            "prediction": 851.9985867829947,
+            "actual": 852
+        },
+        {
+            "row_index": 20,
+            "prediction": 7.9996117201314405,
+            "actual": 8
+        },
+        {
+            "row_index": 21,
+            "prediction": 161.00135771182812,
+            "actual": 161
+        },
+        {
+            "row_index": 22,
+            "prediction": 37.00118578073534,
+            "actual": 37
+        },
+        {
+            "row_index": 23,
+            "prediction": 83.99989548636744,
+            "actual": 84
+        },
+        {
+            "row_index": 24,
+            "prediction": 124.0004749048708,
+            "actual": 124
+        },
+        {
+            "row_index": 25,
+            "prediction": 143.99979940729273,
+            "actual": 144
+        },
+        {
+            "row_index": 26,
+            "prediction": 23.00177943765192,
+            "actual": 23
+        },
+        {
+            "row_index": 27,
+            "prediction": 188.00078637289326,
+            "actual": 188
+        },
+        {
+            "row_index": 28,
+            "prediction": 5.999821387721369,
+            "actual": 6
+        },
+        {
+            "row_index": 29,
+            "prediction": 81.99926118186666,
+            "actual": 82
+        },
+        {
+            "row_index": 30,
+            "prediction": 2.999895526944556,
+            "actual": 3
+        },
+        {
+            "row_index": 31,
+            "prediction": 28.99948524503884,
+            "actual": 29
+        },
+        {
+            "row_index": 32,
+            "prediction": 374.0007082171976,
+            "actual": 374
+        },
+        {
+            "row_index": 33,
+            "prediction": 75.99981974388943,
+            "actual": 76
+        },
+        {
+            "row_index": 34,
+            "prediction": 75.9999137599788,
+            "actual": 76
+        },
+        {
+            "row_index": 35,
+            "prediction": 867.9998624743176,
+            "actual": 868
+        },
+        {
+            "row_index": 36,
+            "prediction": 7.998639153107234,
+            "actual": 8
+        },
+        {
+            "row_index": 37,
+            "prediction": 121.9998328751842,
+            "actual": 122
+        },
+        {
+            "row_index": 38,
+            "prediction": 108.99949461211756,
+            "actual": 109
+        },
+        {
+            "row_index": 39,
+            "prediction": 314.99972623327375,
+            "actual": 315
+        },
+        {
+            "row_index": 40,
+            "prediction": 614.0005347180986,
+            "actual": 614
+        },
+        {
+            "row_index": 41,
+            "prediction": 141.99958548094037,
+            "actual": 142
+        },
+        {
+            "row_index": 42,
+            "prediction": 200.9996497798884,
+            "actual": 201
+        },
+        {
+            "row_index": 43,
+            "prediction": 2.996092659148786,
+            "actual": 3
+        },
+        {
+            "row_index": 44,
+            "prediction": 649.0001743716876,
+            "actual": 649
+        },
+        {
+            "row_index": 45,
+            "prediction": 242.99949737313943,
+            "actual": 243
+        },
+        {
+            "row_index": 46,
+            "prediction": 158.0001265519916,
+            "actual": 158
+        },
+        {
+            "row_index": 47,
+            "prediction": 194.99934056155024,
+            "actual": 195
+        },
+        {
+            "row_index": 48,
+            "prediction": 30.001697117360806,
+            "actual": 30
+        },
+        {
+            "row_index": 49,
+            "prediction": 118.00012553709229,
+            "actual": 118
+        },
+        {
+            "row_index": 50,
+            "prediction": 309.9993394130692,
+            "actual": 310
+        },
+        {
+            "row_index": 51,
+            "prediction": 529.0002318310165,
+            "actual": 529
+        },
+        {
+            "row_index": 52,
+            "prediction": 597.9995708380588,
+            "actual": 598
+        },
+        {
+            "row_index": 53,
+            "prediction": 181.0000704959807,
+            "actual": 181
+        },
+        {
+            "row_index": 54,
+            "prediction": 257.0016106505962,
+            "actual": 257
+        },
+        {
+            "row_index": 55,
+            "prediction": 162.001702212111,
+            "actual": 162
+        },
+        {
+            "row_index": 56,
+            "prediction": 86.00212221599985,
+            "actual": 86
+        },
+        {
+            "row_index": 57,
+            "prediction": 74.99959679905007,
+            "actual": 75
+        },
+        {
+            "row_index": 58,
+            "prediction": 136.99846486329795,
+            "actual": 137
+        },
+        {
+            "row_index": 59,
+            "prediction": 236.00052641740785,
+            "actual": 236
+        },
+        {
+            "row_index": 60,
+            "prediction": 79.00096183190684,
+            "actual": 79
+        },
+        {
+            "row_index": 61,
+            "prediction": 156.00021249453803,
+            "actual": 156
+        },
+        {
+            "row_index": 62,
+            "prediction": 197.99960882790677,
+            "actual": 198
+        },
+        {
+            "row_index": 63,
+            "prediction": 175.00027384243148,
+            "actual": 175
+        },
+        {
+            "row_index": 64,
+            "prediction": 437.9996463163089,
+            "actual": 438
+        },
+        {
+            "row_index": 65,
+            "prediction": 217.00077342992674,
+            "actual": 217
+        },
+        {
+            "row_index": 66,
+            "prediction": 26.999221541839916,
+            "actual": 27
+        },
+        {
+            "row_index": 67,
+            "prediction": 105.00026342509106,
+            "actual": 105
+        },
+        {
+            "row_index": 68,
+            "prediction": 186.000411919782,
+            "actual": 186
+        },
+        {
+            "row_index": 69,
+            "prediction": 355.9989288516048,
+            "actual": 356
+        },
+        {
+            "row_index": 70,
+            "prediction": 177.00085803274013,
+            "actual": 177
+        },
+        {
+            "row_index": 71,
+            "prediction": 119.00030526581664,
+            "actual": 119
+        },
+        {
+            "row_index": 72,
+            "prediction": 49.00097116829414,
+            "actual": 49
+        },
+        {
+            "row_index": 73,
+            "prediction": 224.00104598544237,
+            "actual": 224
+        },
+        {
+            "row_index": 74,
+            "prediction": 161.99968356325905,
+            "actual": 162
+        },
+        {
+            "row_index": 75,
+            "prediction": 320.00150730246776,
+            "actual": 320
+        },
+        {
+            "row_index": 76,
+            "prediction": 122.00191285622095,
+            "actual": 122
+        },
+        {
+            "row_index": 77,
+            "prediction": 153.00015081254406,
+            "actual": 153
+        },
+        {
+            "row_index": 78,
+            "prediction": 271.0000130688527,
+            "actual": 271
+        },
+        {
+            "row_index": 79,
+            "prediction": 109.99968700010254,
+            "actual": 110
+        },
+        {
+            "row_index": 80,
+            "prediction": 373.9989487565938,
+            "actual": 374
+        },
+        {
+            "row_index": 81,
+            "prediction": 20.001044491679266,
+            "actual": 20
+        },
+        {
+            "row_index": 82,
+            "prediction": 22.001124587689304,
+            "actual": 22
+        },
+        {
+            "row_index": 83,
+            "prediction": 108.99958529330978,
+            "actual": 109
+        },
+        {
+            "row_index": 84,
+            "prediction": 258.99993980024067,
+            "actual": 259
+        },
+        {
+            "row_index": 85,
+            "prediction": 472.00021550368115,
+            "actual": 472
+        },
+        {
+            "row_index": 86,
+            "prediction": 176.00050906748245,
+            "actual": 176
+        },
+        {
+            "row_index": 87,
+            "prediction": 105.00134801398207,
+            "actual": 105
+        },
+        {
+            "row_index": 88,
+            "prediction": 412.0000249011749,
+            "actual": 412
+        },
+        {
+            "row_index": 89,
+            "prediction": 439.9994473421455,
+            "actual": 440
+        },
+        {
+            "row_index": 90,
+            "prediction": 169.0003513103847,
+            "actual": 169
+        },
+        {
+            "row_index": 91,
+            "prediction": 3.996678971177033,
+            "actual": 4
+        },
+        {
+            "row_index": 92,
+            "prediction": 103.99967828413605,
+            "actual": 104
+        },
+        {
+            "row_index": 93,
+            "prediction": 290.00002801598845,
+            "actual": 290
+        },
+        {
+            "row_index": 94,
+            "prediction": 84.0012435948692,
+            "actual": 84
+        },
+        {
+            "row_index": 95,
+            "prediction": 76.00034052713258,
+            "actual": 76
+        },
+        {
+            "row_index": 96,
+            "prediction": 176.99679380022795,
+            "actual": 177
+        },
+        {
+            "row_index": 97,
+            "prediction": 185.9980121631216,
+            "actual": 186
+        },
+        {
+            "row_index": 98,
+            "prediction": 3.9994737933844533,
+            "actual": 4
+        },
+        {
+            "row_index": 99,
+            "prediction": 143.00000310620499,
+            "actual": 143
+        }
+    ],
+    "drift": {
+        "flagged_count": "Unavailable",
+        "rows": [
+            {
+                "feature": "Reference data",
+                "reference_mean": "Unavailable",
+                "current_mean": "Unavailable",
+                "status": "REFERENCE DATA MISSING"
+            }
+        ],
+        "flagged_ratio": 0
+    },
+    "ood": {
+        "row_rate": "Unavailable",
+        "rows": [
+            {
+                "feature": "Reference data",
+                "count": "Unavailable",
+                "band": "Unavailable"
+            }
+        ],
+        "row_ratio": 0
+    },
+    "confidence": {
+        "status": "Prediction uncertainty unavailable for this model type.",
+        "mean_prediction": 183.916,
+        "mean_uncertainty": "Unavailable",
+        "high_uncertainty_rate": 0,
+        "high_uncertainty_ratio": 0
+    },
+    "verdict": "RELIABLE - Checks Passed",
+    "status_class": "reliable",
+    "risk_score": 0,
+    "assessment": "ModelGuard assessment: quality, performance, drift, OOD, and confidence checks are acceptable.",
+    "explanation": "ModelGuard assessment: quality, performance, drift, OOD, and confidence checks are acceptable.",
+    "recommendations": [
+        "Continue monitoring the model with fresh labeled evaluation data."
+    ],
+    "predictions_file": "C:\\Users\\Avantika yadav\\Downloads\\Modelguard_fixed\\Modelguard\\reports\\workflow_predictions\\9e617cb01dd8.csv",
+    "report_file": "C:\\Users\\Avantika yadav\\Downloads\\Modelguard_fixed\\Modelguard\\reports\\workflow_runs\\9e617cb01dd8.json",
+    "text_report_file": "C:\\Users\\Avantika yadav\\Downloads\\Modelguard_fixed\\Modelguard\\reports\\workflow_runs\\9e617cb01dd8.txt"
+}

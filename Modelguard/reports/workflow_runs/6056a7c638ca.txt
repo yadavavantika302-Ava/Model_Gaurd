@@ -1,0 +1,35 @@
+MODELGUARD OFFLINE RELIABILITY REPORT
+========================================
+Run ID: 6056a7c638ca
+Created: 2026-10-14 02:00:33
+Mode: Existing Model
+Model: RandomForestRegressor
+Detected type: Regression
+Verdict: RISKY - Review Before Use
+Risk score: 5
+
+ASSESSMENT
+----------
+ModelGuard assessment: feature drift was detected; prediction uncertainty is elevated.
+
+FEATURES
+--------
+hr, season, yr, mnth, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed
+
+DATA QUALITY
+------------
+Issues: 0
+Missing features: None
+Invalid values: 0
+Duplicate rows: 0
+
+PERFORMANCE
+-----------
+MAE: 51.749
+RMSE: 76.956
+R2: 0.8782
+
+RECOMMENDATIONS
+---------------
+- Investigate drifted features and refresh the training data if the new distribution is valid.
+- Route high-uncertainty predictions for manual review or collect more labels.

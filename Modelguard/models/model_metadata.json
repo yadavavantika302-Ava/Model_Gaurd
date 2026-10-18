@@ -1,0 +1,26 @@
+{
+    "model_type": "RandomForestRegressor",
+    "dataset": "UCI Bike Sharing hourly dataset",
+    "target": "cnt",
+    "features": [
+        "hr",
+        "season",
+        "yr",
+        "mnth",
+        "holiday",
+        "weekday",
+        "workingday",
+        "weathersit",
+        "temp",
+        "atemp",
+        "hum",
+        "windspeed"
+    ],
+    "training_rows": 11122,
+    "validation_rows": 2781,
+    "metrics": {
+        "MAE": 49.221,
+        "RMSE": 74.522,
+        "R2": 0.8821
+    }
+}

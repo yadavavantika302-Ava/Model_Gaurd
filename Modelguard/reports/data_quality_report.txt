@@ -1,0 +1,11 @@
+MODEL GUARD - DATA QUALITY REPORT
+======================================
+Rows checked: 3476
+Columns received: 14
+Status: CHECKS PASSED
+
+ISSUES:
+- None found
+
+WARNINGS:
+- None found

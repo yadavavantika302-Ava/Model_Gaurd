@@ -1,0 +1,35 @@
+MODELGUARD OFFLINE RELIABILITY REPORT
+========================================
+Run ID: 722f4beaad7f
+Created: 2026-10-14 02:00:33
+Mode: No Model
+Model: RandomForestClassifier
+Detected type: Classification
+Verdict: RELIABLE - Checks Passed
+Risk score: 0
+
+ASSESSMENT
+----------
+ModelGuard assessment: quality, performance, drift, OOD, and confidence checks are acceptable.
+
+FEATURES
+--------
+f1, f2
+
+DATA QUALITY
+------------
+Issues: 0
+Missing features: None
+Invalid values: 0
+Duplicate rows: 3
+
+PERFORMANCE
+-----------
+Accuracy: 0.7667
+Precision: 0.7619
+Recall: 0.7667
+F1: 0.7634
+
+RECOMMENDATIONS
+---------------
+- Continue monitoring the model with fresh labeled evaluation data.

@@ -1,0 +1,12 @@
+
+MODEL GUARD - UNSEEN TEST EVALUATION
+====================================
+Model: RandomForestRegressor
+Test rows: 3476
+
+MAE: 51.749
+RMSE: 76.956
+R2: 0.8782
+
+These metrics describe performance on this test period.
+They do not guarantee performance on future data.

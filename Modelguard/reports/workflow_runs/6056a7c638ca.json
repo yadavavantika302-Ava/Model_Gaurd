@@ -1,0 +1,240 @@
+{
+    "run_id": "6056a7c638ca",
+    "created_at": "2026-10-14 02:00:33",
+    "mode_label": "Existing Model",
+    "model_name": "RandomForestRegressor",
+    "model_profile": {
+        "class_name": "RandomForestRegressor",
+        "task_type": "regression",
+        "task_label": "Regression",
+        "methods": [
+            "predict"
+        ],
+        "interface_label": "predict",
+        "supports_predict": true,
+        "supports_proba": false,
+        "supports_uncertainty": true
+    },
+    "features": [
+        "hr",
+        "season",
+        "yr",
+        "mnth",
+        "holiday",
+        "weekday",
+        "workingday",
+        "weathersit",
+        "temp",
+        "atemp",
+        "hum",
+        "windspeed"
+    ],
+    "target": "cnt",
+    "rows": 3476,
+    "data_profile": {
+        "row_count": 3476,
+        "column_count": 14,
+        "numeric_count": 13,
+        "missing_cells": 0,
+        "columns": [
+            "dteday",
+            "hr",
+            "season",
+            "yr",
+            "mnth",
+            "holiday",
+            "weekday",
+            "workingday",
+            "weathersit",
+            "temp",
+            "atemp",
+            "hum",
+            "windspeed",
+            "cnt"
+        ]
+    },
+    "training": null,
+    "quality": {
+        "missing_columns": "None",
+        "invalid_values": 0,
+        "duplicates": 0,
+        "non_numeric": "None",
+        "issues": [],
+        "warnings": [],
+        "issue_count": 0
+    },
+    "performance": {
+        "task_type": "regression",
+        "metrics": {
+            "MAE": 51.749,
+            "RMSE": 76.956,
+            "R2": 0.8782
+        },
+        "primary_metric": 0.8782,
+        "primary_metric_name": "R2"
+    },
+    "prediction_summary": "mean 230.085, min 2.535, max 873.630",
+    "drift": {
+        "flagged_count": 3,
+        "rows": [
+            {
+                "feature": "hr",
+                "reference_mean": 11.547,
+                "current_mean": 11.547,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "season",
+                "reference_mean": 2.264,
+                "current_mean": 3.453,
+                "status": "REVIEW POSSIBLE DRIFT"
+            },
+            {
+                "feature": "yr",
+                "reference_mean": 0.378,
+                "current_mean": 1.0,
+                "status": "REVIEW POSSIBLE DRIFT"
+            },
+            {
+                "feature": "mnth",
+                "reference_mean": 5.65,
+                "current_mean": 10.088,
+                "status": "REVIEW POSSIBLE DRIFT"
+            },
+            {
+                "feature": "holiday",
+                "reference_mean": 0.027,
+                "current_mean": 0.034,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "weekday",
+                "reference_mean": 2.999,
+                "current_mean": 3.021,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "workingday",
+                "reference_mean": 0.684,
+                "current_mean": 0.676,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "weathersit",
+                "reference_mean": 1.42,
+                "current_mean": 1.446,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "temp",
+                "reference_mean": 0.499,
+                "current_mean": 0.488,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "atemp",
+                "reference_mean": 0.478,
+                "current_mean": 0.467,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "hum",
+                "reference_mean": 0.623,
+                "current_mean": 0.644,
+                "status": "NO LARGE SHIFT"
+            },
+            {
+                "feature": "windspeed",
+                "reference_mean": 0.194,
+                "current_mean": 0.174,
+                "status": "NO LARGE SHIFT"
+            }
+        ],
+        "flagged_ratio": 0.25
+    },
+    "ood": {
+        "row_rate": 3.9,
+        "rows": [
+            {
+                "feature": "hr",
+                "count": 0,
+                "band": "-12.000 to 36.000"
+            },
+            {
+                "feature": "season",
+                "count": 0,
+                "band": "-2.000 to 6.000"
+            },
+            {
+                "feature": "yr",
+                "count": 0,
+                "band": "-1.500 to 2.500"
+            },
+            {
+                "feature": "mnth",
+                "count": 0,
+                "band": "-4.500 to 15.500"
+            },
+            {
+                "feature": "holiday",
+                "count": 119,
+                "band": "0.000 to 0.000"
+            },
+            {
+                "feature": "weekday",
+                "count": 0,
+                "band": "-5.000 to 11.000"
+            },
+            {
+                "feature": "workingday",
+                "count": 0,
+                "band": "-1.500 to 2.500"
+            },
+            {
+                "feature": "weathersit",
+                "count": 0,
+                "band": "-0.500 to 3.500"
+            },
+            {
+                "feature": "temp",
+                "count": 0,
+                "band": "-0.140 to 1.140"
+            },
+            {
+                "feature": "atemp",
+                "count": 0,
+                "band": "-0.099 to 1.053"
+            },
+            {
+                "feature": "hum",
+                "count": 0,
+                "band": "-0.010 to 1.270"
+            },
+            {
+                "feature": "windspeed",
+                "count": 16,
+                "band": "-0.164 to 0.552"
+            }
+        ],
+        "row_ratio": 0.03883774453394707
+    },
+    "confidence": {
+        "status": "Estimated from Random Forest prediction spread.",
+        "mean_prediction": 230.085,
+        "mean_uncertainty": 56.02,
+        "high_uncertainty_rate": 50.0,
+        "high_uncertainty_ratio": 0.5
+    },
+    "verdict": "RISKY - Review Before Use",
+    "status_class": "risky",
+    "risk_score": 5,
+    "assessment": "ModelGuard assessment: feature drift was detected; prediction uncertainty is elevated.",
+    "explanation": "ModelGuard assessment: feature drift was detected; prediction uncertainty is elevated.",
+    "recommendations": [
+        "Investigate drifted features and refresh the training data if the new distribution is valid.",
+        "Route high-uncertainty predictions for manual review or collect more labels."
+    ],
+    "predictions_file": "C:\\Users\\Avantika yadav\\OneDrive\\Desktop\\Modelguard\\reports\\workflow_predictions\\6056a7c638ca.csv",
+    "report_file": "C:\\Users\\Avantika yadav\\OneDrive\\Desktop\\Modelguard\\reports\\workflow_runs\\6056a7c638ca.json",
+    "text_report_file": "C:\\Users\\Avantika yadav\\OneDrive\\Desktop\\Modelguard\\reports\\workflow_runs\\6056a7c638ca.txt"
+}

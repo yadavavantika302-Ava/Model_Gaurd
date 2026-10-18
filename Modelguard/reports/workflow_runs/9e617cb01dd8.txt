@@ -1,0 +1,50 @@
+MODELGUARD OFFLINE RELIABILITY REPORT
+========================================
+Run ID: 9e617cb01dd8
+Created: 2026-10-16 00:29:30
+Mode: ModelGuard Training Artifact
+Model: ModelGuard trained pipeline
+Detected type: Regression
+Verdict: RELIABLE - Checks Passed
+Risk score: 0
+
+ASSESSMENT
+----------
+ModelGuard assessment: quality, performance, drift, OOD, and confidence checks are acceptable.
+
+FEATURES
+--------
+instant, dteday, season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed, casual, registered
+
+MODEL INFORMATION
+-----------------
+Framework: sklearn 1.9.0
+Family: LinearRegression
+Input dimensions: Not exposed by this model
+Output dimensions: Not exposed by this model
+Preprocessing: [{'step': 'preprocess', 'component': 'ColumnTransformer'}]
+
+DATA QUALITY
+------------
+Issues: 0
+Missing features: None
+Invalid values: 0
+Duplicate rows: 0
+
+PERFORMANCE
+-----------
+MAE: 0.001
+RMSE: 0.001
+R2: 1.0
+
+MODEL EXPLANATION
+-----------------
+Global explanation method: Model-agnostic one-feature-at-a-time sensitivity
+Individual explanation method: Unavailable
+Selected CSV row 1 prediction: 424.9997364894052
+The model returned an output, but no supported feature-level explanation was available.
+Local sensitivity compares the selected row with typical reference values; these changes describe model behavior, not causation.
+
+RECOMMENDATIONS
+---------------
+- Continue monitoring the model with fresh labeled evaluation data.

@@ -1,0 +1,15 @@
+MODEL TRAINING REPORT
+=====================
+Model: Random Forest Regressor
+Dataset: UCI Bike Sharing hourly dataset
+Target: cnt
+
+Training rows: 11122
+Validation rows: 2781
+
+MAE: 49.221
+RMSE: 74.522
+R2: 0.8821
+
+Note: These are validation results, not proof of
+reliability on every future dataset.

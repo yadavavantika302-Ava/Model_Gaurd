@@ -82,37 +82,51 @@ def infer_training_task(target):
 
 
 def make_training_estimator(task, algorithm, options):
-    trees = bounded_int(options, "n_estimators", 150, 10, 500)
-    depth = bounded_int(options, "max_depth", 1, 1, 100) if options.get("max_depth") else None
     seed = 42
+    tree_algorithms = {"auto", "random_forest", "gradient_boosting"}
+    depth_algorithms = {"auto", "random_forest", "decision_tree", "gradient_boosting"}
+    trees = bounded_int(options, "n_estimators", 150, 10, 500) if algorithm in tree_algorithms else None
+    depth = (bounded_int(options, "max_depth", 1, 1, 100)
+             if algorithm in depth_algorithms and options.get("max_depth") else None)
     if task == "classification":
-        choices = {
-            "auto": RandomForestClassifier(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1),
-            "random_forest": RandomForestClassifier(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1),
-            "logistic": LogisticRegression(max_iter=1000),
-            "decision_tree": DecisionTreeClassifier(max_depth=depth, random_state=seed),
-            "gradient_boosting": GradientBoostingClassifier(n_estimators=min(trees, 300), max_depth=depth or 3, random_state=seed),
-            "svm": SVC(probability=True), "knn": KNeighborsClassifier(n_neighbors=5),
-            "neural_network": MLPClassifier(hidden_layer_sizes=parse_hidden_layers(options.get("layers", "64,32")),
+        if algorithm in {"auto", "random_forest"}:
+            return RandomForestClassifier(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1)
+        if algorithm == "logistic":
+            return LogisticRegression(max_iter=1000)
+        if algorithm == "decision_tree":
+            return DecisionTreeClassifier(max_depth=depth, random_state=seed)
+        if algorithm == "gradient_boosting":
+            return GradientBoostingClassifier(n_estimators=min(trees, 300), max_depth=depth or 3,
+                learning_rate=bounded_float(options, "learning_rate", .1, .00001, 1), random_state=seed)
+        if algorithm == "svm":
+            return SVC(probability=True)
+        if algorithm == "knn":
+            return KNeighborsClassifier(n_neighbors=5)
+        if algorithm == "neural_network":
+            return MLPClassifier(hidden_layer_sizes=parse_hidden_layers(options.get("layers", "64,32")),
                 activation=options.get("activation", "relu"), learning_rate_init=bounded_float(options, "learning_rate", .001, .00001, 1),
                 batch_size=bounded_int(options, "batch_size", 32, 1, 4096), max_iter=bounded_int(options, "epochs", 200, 10, 1000),
-                alpha=bounded_float(options, "dropout", .0001, 0, 1), random_state=seed, early_stopping=True),
-        }
+                alpha=bounded_float(options, "dropout", .0001, 0, 1), random_state=seed, early_stopping=True)
     else:
-        choices = {
-            "auto": RandomForestRegressor(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1),
-            "random_forest": RandomForestRegressor(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1),
-            "linear": LinearRegression(), "ridge": Ridge(), "lasso": Lasso(),
-            "decision_tree": DecisionTreeRegressor(max_depth=depth, random_state=seed),
-            "gradient_boosting": GradientBoostingRegressor(n_estimators=min(trees, 300), max_depth=depth or 3, random_state=seed),
-            "neural_network": MLPRegressor(hidden_layer_sizes=parse_hidden_layers(options.get("layers", "64,32")),
+        if algorithm in {"auto", "random_forest"}:
+            return RandomForestRegressor(n_estimators=trees, max_depth=depth, random_state=seed, n_jobs=1)
+        if algorithm == "linear":
+            return LinearRegression()
+        if algorithm == "ridge":
+            return Ridge()
+        if algorithm == "lasso":
+            return Lasso()
+        if algorithm == "decision_tree":
+            return DecisionTreeRegressor(max_depth=depth, random_state=seed)
+        if algorithm == "gradient_boosting":
+            return GradientBoostingRegressor(n_estimators=min(trees, 300), max_depth=depth or 3,
+                learning_rate=bounded_float(options, "learning_rate", .1, .00001, 1), random_state=seed)
+        if algorithm == "neural_network":
+            return MLPRegressor(hidden_layer_sizes=parse_hidden_layers(options.get("layers", "64,32")),
                 activation=options.get("activation", "relu"), learning_rate_init=bounded_float(options, "learning_rate", .001, .00001, 1),
                 batch_size=bounded_int(options, "batch_size", 32, 1, 4096), max_iter=bounded_int(options, "epochs", 200, 10, 1000),
-                alpha=bounded_float(options, "dropout", .0001, 0, 1), random_state=seed, early_stopping=True),
-        }
-    if algorithm not in choices:
-        raise ValueError("Choose a supported algorithm for the selected task.")
-    return choices[algorithm]
+                alpha=bounded_float(options, "dropout", .0001, 0, 1), random_state=seed, early_stopping=True)
+    raise ValueError("Choose a supported algorithm for the selected task.")
 
 
 def parse_hidden_layers(value):
@@ -136,12 +150,14 @@ def bounded_int(options, key, default, minimum, maximum):
 
 
 def bounded_float(options, key, default, minimum, maximum):
+    label = key.replace("_", " ")
+    label = label[:1].upper() + label[1:]
     try:
         value = float(options.get(key, default))
     except (TypeError, ValueError):
-        raise ValueError(f"{key.replace('_', ' ').title()} must be a number.")
+        raise ValueError(f"{label} must be a number.")
     if not np.isfinite(value) or value < minimum or value > maximum:
-        raise ValueError(f"{key.replace('_', ' ').title()} must be between {minimum} and {maximum}.")
+        raise ValueError(f"{label} must be between {minimum} and {maximum}.")
     return value
 
 
@@ -2053,16 +2069,30 @@ def check_model():
 def train_model():
     error = None
     result = None
+    initial_task = request.form.get("task", "auto")
+    if initial_task not in {"auto", "classification", "regression", "clustering"}:
+        initial_task = "auto"
+    initial_mode = request.form.get("mode", "beginner")
+    if initial_mode not in {"beginner", "advanced"}:
+        initial_mode = "beginner"
+    initial_algorithm = request.form.get("algorithm", "auto")
+    initial_target = request.form.get("target", "")
     if request.method == "POST":
         try:
+            mode = request.form.get("mode", "beginner")
+            if mode not in {"beginner", "advanced"}:
+                raise ValueError("Choose Beginner or Advanced setup mode.")
             dataset = read_csv_upload(request.files.get("dataset"), "Training dataset")
             if dataset.empty or len(dataset.columns) < 2:
                 raise ValueError("The CSV needs at least one feature column and data rows.")
-            options = {key: request.form.get(key, default) for key, default in {
+            defaults = {
                 "n_estimators": "150", "max_depth": "", "n_clusters": "3", "eps": ".5",
                 "min_samples": "5", "split": "random", "time_column": "", "layers": "64,32",
                 "activation": "relu", "learning_rate": ".001", "batch_size": "32",
-                "epochs": "200", "dropout": ".0001"}.items()}
+                "epochs": "200", "dropout": ".0001"}
+            options = dict(defaults)
+            if mode == "advanced":
+                options.update({key: request.form.get(key, default) for key, default in defaults.items()})
             pipeline, report, predictions = train_dataset(
                 dataset, request.form.get("target", ""), request.form.get("task", "auto"),
                 request.form.get("algorithm", "auto"), options)
@@ -2081,7 +2111,9 @@ def train_model():
         except Exception as exc:
             error = public_error_message(exc)
     return render_template("train.html", error=error, result=result,
-                           history=recent_training_runs())
+                           history=recent_training_runs(), initial_task=initial_task,
+                           initial_mode=initial_mode, initial_algorithm=initial_algorithm,
+                           initial_target=initial_target)
 
 
 @app.route("/train/preview", methods=["POST"])
